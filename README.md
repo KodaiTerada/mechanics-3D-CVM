@@ -28,7 +28,6 @@ be selected with `python -m pip install -r requirements-tested.txt`.
 
 | Notebook | Content |
 | --- | --- |
-| `fig1.ipynb` | Programmatic model/deformation schematic (not identical artwork) |
 | `fig2.ipynb` | Linear and finite-strain Poisson ratios |
 | `fig3.ipynb` | Regular-prism equilibria and affine elastic moduli |
 | `fig4.ipynb` | Affine out-of-plane shear stability and fixed-length energy landscapes |
