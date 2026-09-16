@@ -1,0 +1,10 @@
+# Numerical and plotting environment used for validation (Python 3.13).
+jax==0.11.0
+jaxlib==0.11.0
+numpy==2.5.2
+scipy==1.18.0
+optax==0.2.8
+matplotlib==3.11.1
+seaborn==0.13.2
+pandas==3.0.5
+pytest==9.1.1

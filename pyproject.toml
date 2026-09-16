@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epithelial-cvm3d"
+version = "0.1.0"
+description = "Three-dimensional cell vertex model of epithelial elasticity"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["jax>=0.4.34", "numpy>=1.26", "optax>=0.2.4", "scipy>=1.11"]
+
+[project.optional-dependencies]
+notebooks = ["jupyterlab>=4", "ipykernel>=6.29", "matplotlib>=3.8", "seaborn>=0.13", "pandas>=2"]
+test = ["pytest>=8", "nbformat>=5", "nbclient>=0.10"]
+
+[tool.setuptools.packages.find]
+include = ["cvm3d", "cvm3d.*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["error"]
