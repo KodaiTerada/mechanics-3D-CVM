@@ -1,7 +1,6 @@
 # Epithelial cell vertex model
 
 Simulation code and figure notebooks for *Epithelial mechanics in a three-dimensional cell vertex model with local junctional constraints*.
-This directory is self-contained; only public Python packages are required.
 
 ## Install and run
 
