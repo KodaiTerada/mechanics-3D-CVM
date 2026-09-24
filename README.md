@@ -17,7 +17,8 @@ python -m jupyterlab notebooks
 Select the `epithelial-cvm3d` kernel and run a notebook from top to bottom.
 If the public dependencies are already installed in your kernel, you can also
 open the notebooks directly: the first cell locates the bundled `cvm3d` from
-this directory, its `notebooks` directory, or the parent containing `for_public`.
+this directory or any of its subdirectories, including `notebooks`, regardless
+of the name of the project directory.
 Keep the directory structure intact. Restart the kernel if a different copy of
 `cvm3d` was imported previously.
 Notebooks display figures without saving figures, meshes, or calculation caches.
@@ -40,7 +41,7 @@ The full dynamic notebooks use 30 realizations (seeds 100–129) and can take ho
 They stop on failed equilibration or unstable Hessians. Reducing `seeds` is useful
 for a trial run (at least two for confidence intervals), but changes the ensemble.
 Figures 5 and S2 use a 5 × 8 reference; S4 uses 10 × 4, as specified in its notebook.
-To display S2 after running Fig. 5 in the same kernel, call `plot_individuals(result)`.
+To display S2 after running Fig. 5 in the same kernel, call `fig_s2 = plot_individuals(result)`.
 
 ## Model
 

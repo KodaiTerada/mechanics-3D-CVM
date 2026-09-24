@@ -62,7 +62,7 @@ def test_first_cells_find_bundled_package_without_pythonpath(tmp_path):
     for directory, expected_root in (
         (root / "notebooks", root),
         (root, root),
-        (root.parent, root),
+        (copied, copied),
         (copied / "notebooks", copied),
     ):
         # Reset cvm3d imports between notebooks to exercise each independently.

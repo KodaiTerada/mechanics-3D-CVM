@@ -45,8 +45,14 @@ def modes(result, response, mesh):
     )
 
 
-def plot_dynamic(results, bins=50, shoulder=(0.005, 0.025)):
-    """Six panels per condition; shared spectral bins across displayed cases."""
+def plot_dynamic(results, bins=50, shoulder=(0.005, 0.025), *, fit_window=None):
+    """Display six panels per condition and return the figure.
+
+    Spectral bins are shared across cases. Set ``shoulder=None`` to omit
+    shading. ``fit_window`` optionally fits the mean shear loss in log space
+    over the given normalized frequency interval, independently of shading.
+    Assign the returned figure in notebooks to avoid displaying it twice.
+    """
     modal = [
         [modes(r, r["regular_shear"], r["regular"])]
         + [modes(r, s, m) for s, m in zip(r["shear"], r["meshes"], strict=True)]
@@ -129,11 +135,35 @@ def plot_dynamic(results, bins=50, shoulder=(0.005, 0.025)):
         f.plot(centers, mean, color="tab:blue")
         f.plot(centers, spectrum(group[0]), color="black")
         f.set(xlabel=r"$\ln(\tau/\tau_0)$", ylabel=r"$S_G$", ylim=(0, None))
-        for ax in (c, e):
-            ax.axvspan(*shoulder, color="tab:purple", alpha=0.12)
-        f.axvspan(
-            -np.log(shoulder[1]), -np.log(shoulder[0]), color="tab:purple", alpha=0.12
-        )
+        if shoulder is not None:
+            for ax in (c, e):
+                ax.axvspan(*shoulder, color="tab:purple", alpha=0.12)
+            f.axvspan(
+                -np.log(shoulder[1]), -np.log(shoulder[0]), color="tab:purple", alpha=0.12
+            )
+        if fit_window is not None:
+            loss_mean = np.mean(
+                [response.loss_modulus for response in r["shear"]], axis=0
+            )
+            selected = (frequency >= fit_window[0]) & (frequency <= fit_window[1])
+            if (
+                selected.sum() < 2
+                or np.any(~np.isfinite(loss_mean[selected]))
+                or np.any(loss_mean[selected] <= 0)
+            ):
+                raise ValueError("Insufficient positive loss samples in the fit window.")
+            slope, intercept = np.polyfit(
+                np.log(frequency[selected]), np.log(loss_mean[selected]), 1
+            )
+            guide_x = np.geomspace(*fit_window, 100)
+            e.plot(
+                guide_x, np.exp(intercept) * guide_x**slope,
+                color="tab:purple", ls=":", label="Loss power-law fit",
+            )
+            e.text(
+                0.04, 0.94, rf"$k={slope:.2f}$", transform=e.transAxes, va="top",
+                bbox=dict(facecolor="white", edgecolor="none", alpha=0.8, pad=1.2),
+            )
         for i, ax in enumerate((a, b, c, d, e, f)):
             ax.set_title(chr(97 + 6 * row + i), loc="left")
             ax.spines[["top", "right"]].set_visible(False)
