@@ -17,11 +17,10 @@ python -m jupyterlab notebooks
 Select the `epithelial-cvm3d` kernel and run a notebook from top to bottom.
 If the public dependencies are already installed in your kernel, you can also
 open the notebooks directly: the first cell locates the bundled `cvm3d` from
-this directory or any of its subdirectories, including `notebooks`, regardless
-of the name of the project directory.
+this directory or any of its subdirectories, including `notebooks`.
 Keep the directory structure intact. Restart the kernel if a different copy of
 `cvm3d` was imported previously.
-Notebooks display figures without saving figures, meshes, or calculation caches.
+Notebooks display figures.
 Double precision is enabled before calculations. `requirements-tested.txt` records
 the numerical and plotting versions used for validation (Python 3.13); these can
 be selected with `python -m pip install -r requirements-tested.txt`.
