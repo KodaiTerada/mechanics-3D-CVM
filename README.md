@@ -30,7 +30,7 @@ be selected with `python -m pip install -r requirements-tested.txt`.
 | `fig2.ipynb` | Linear and finite-strain Poisson ratios |
 | `fig3.ipynb` | Regular-prism equilibria and affine elastic moduli |
 | `fig4.ipynb` | Affine out-of-plane shear stability and fixed-length energy landscapes |
-| `fig5.ipynb` | Bulk/shear dynamic moduli, mode coupling, relaxation spectrum |
+| `fig5.ipynb` | Bulk/shear dynamic moduli, mode coupling, relaxation spectrum; Figure S5 complex in-plane Poisson ratio |
 | `figS1.ipynb` | Elastic-ratio bifurcations |
 | `figS2.ipynb` | Individual dynamic responses and relaxed tilings |
 | `figS3.ipynb` | Cell-number dependence: 20 and 80 cells |
@@ -41,6 +41,7 @@ They stop on failed equilibration or unstable Hessians. Reducing `seeds` is usef
 for a trial run (at least two for confidence intervals), but changes the ensemble.
 Figures 5 and S2 use a 5 × 8 reference; S4 uses 10 × 4, as specified in its notebook.
 To display S2 after running Fig. 5 in the same kernel, call `fig_s2 = plot_individuals(result)`.
+Figure S5 is included in the final plotting cell of `fig5.ipynb` and reuses the Figure 5 results without additional simulation.
 
 ## Model
 
