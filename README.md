@@ -1,6 +1,6 @@
 # Three-dimensional cell vertex model of epithelia
 
-Simulation code and figure notebooks for *Epithelial mechanics in a three-dimensional cell vertex model with local junctional constraints*.
+Simulation code and figure notebooks for [*Epithelial mechanics in a three-dimensional cell vertex model with local junctional constraints*](https://www.biorxiv.org/content/10.64898/2026.05.15.725329v3).
 
 ## Install and run
 
